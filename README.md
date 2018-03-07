@@ -14,7 +14,7 @@ Android project to list upcomming movies, using an api provided by themoviedb.or
 * [Picasso] - Used to download the image provided by RestApi.
 * [Mockito] - Library used to mock classes for tests.
 
-##Debts
+## Debts
 There are some debts that were not implemented due to time, they are:
 
 * Work out an offline solution, using Room to store some results and load then when offline.
