@@ -2,6 +2,7 @@ package com.benavalli.arcmovies.di.module
 
 import android.app.Application
 import android.content.Context
+import com.benavalli.arcmovies.application.ArcMovieApplication
 import com.benavalli.arcmovies.di.scope.ApplicationScope
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
@@ -12,13 +13,13 @@ import javax.inject.Singleton
 @Module
 class ApplicationModule(private val application: Application) {
 
-  @ApplicationScope
+  @Singleton
   @Provides
   fun provideApplicationContext(): Context {
     return application
   }
 
-  @Provides
   @Singleton
-  fun provideGson(): Gson = GsonBuilder().serializeNulls().create()
+  @Provides
+  fun provideGson(): Gson = GsonBuilder().setLenient().create()
 }

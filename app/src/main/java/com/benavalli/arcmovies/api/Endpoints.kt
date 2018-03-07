@@ -1,5 +1,6 @@
 package com.benavalli.arcmovies.api
 
+import com.benavalli.arcmovies.api.flow.ObservableRequestFlow
 import com.benavalli.arcmovies.domain.MovieDetails
 import com.benavalli.arcmovies.domain.UpcomingMovies
 import io.reactivex.Observable
@@ -15,3 +16,4 @@ interface Endpoints {
     @GET("movie/{movie_id}")
     fun getMovieDetails(@Path("movie_id") id: Int) : Observable<MovieDetails>
 }
+
