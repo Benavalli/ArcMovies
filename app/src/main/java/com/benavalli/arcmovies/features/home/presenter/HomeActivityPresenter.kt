@@ -6,8 +6,6 @@ import com.benavalli.arcmovies.api.repository.HomeRepository
 import com.benavalli.arcmovies.base.BasePresenter
 import com.benavalli.arcmovies.domain.UpcomingMovies
 import com.benavalli.arcmovies.features.home.contract.HomeActivityContract
-import io.reactivex.android.schedulers.AndroidSchedulers
-import io.reactivex.schedulers.Schedulers
 import javax.inject.Inject
 
 class HomeActivityPresenter
@@ -15,25 +13,19 @@ class HomeActivityPresenter
 constructor(private val context: Context, private val repository: HomeRepository) : BasePresenter<HomeActivityContract.View>(),
         HomeActivityContract.Presenter<HomeActivityContract.View> {
 
+    var page : Int = 1
 
     override fun loadMovies() {
-        System.out.println("oi")
-        repository.getMovies(1).subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread()).subscribe({loadMoviesSuccess(it)},{loadMoviesError(it)} )
+        repository.getMovies(page)
+                .subscribe({loadMoviesSuccess(it)}, {loadMoviesError(it)})
     }
 
-    fun loadMoviesSuccess(movies : UpcomingMovies) {
-        System.out.println("oi")
-
+    private fun loadMoviesSuccess(movies : UpcomingMovies) {
+        getView()?.bindMovies(movies)
     }
 
-    fun loadMoviesError(throwable: Throwable) {
-        System.out.println("oi")
-
+    private fun loadMoviesError(throwable: Throwable) {
+        Log.e("HomeActivityPresenter", throwable.message);
     }
 
-   /* override fun loadThings() {
-        Log.e("TestPresenter", ".loadThings()")
-        getView()?.showThings()
-    }*/
 }

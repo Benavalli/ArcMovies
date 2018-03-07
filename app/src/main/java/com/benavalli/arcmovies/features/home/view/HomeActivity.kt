@@ -9,8 +9,11 @@ import com.benavalli.arcmovies.databinding.ActivityHomeBinding
 import com.benavalli.arcmovies.di.component.DaggerHomeActivityComponent
 import com.benavalli.arcmovies.di.component.HomeActivityComponent
 import com.benavalli.arcmovies.domain.UpcomingMovies
+import com.benavalli.arcmovies.features.adapter.MoviesAdapter
 import com.benavalli.arcmovies.features.home.contract.HomeActivityContract
 import com.benavalli.arcmovies.features.home.presenter.HomeActivityPresenter
+import android.content.Intent
+import com.benavalli.arcmovies.features.constants.IntentConstants
 
 
 class HomeActivity : BaseActivity<HomeActivityContract.View, HomeActivityPresenter,
@@ -29,7 +32,16 @@ class HomeActivity : BaseActivity<HomeActivityContract.View, HomeActivityPresent
     }
 
     override fun bindMovies(movies: UpcomingMovies) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        binding.moviesList.adapter = MoviesAdapter(this, ArrayList(movies.results))
+        binding.moviesList.setOnItemClickListener { _, _, position, _ ->
+            showDetails(movies.results[position].id)
+        }
+    }
+
+    private fun showDetails(id: Int) {
+        val intent = Intent(this, DetailsActivity::class.java)
+        intent.putExtra(IntentConstants.DETAILS_INTENT_KEY, id)
+        startActivity(intent)
     }
 
 }
