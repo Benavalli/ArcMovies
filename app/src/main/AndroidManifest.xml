@@ -22,7 +22,9 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".features.home.view.DetailsActivity"/>
+            android:name=".features.home.view.DetailsActivity"
+            android:label="@string/title_activity_details"
+            android:theme="@style/AppTheme.NoActionBar"/>
     </application>
 
 </manifest>

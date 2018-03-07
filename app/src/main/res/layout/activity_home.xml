@@ -6,7 +6,8 @@
         xmlns:app="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:gravity="center_vertical">
+        android:gravity="center_vertical"
+        tools:context=".features.home.view.HomeActivity">
 
     <android.support.design.widget.AppBarLayout
             android:id="@+id/toolbar_layout"
@@ -34,6 +35,28 @@
             android:dividerHeight="5dp"
             android:divider="@null"
             app:layout_constraintTop_toBottomOf="@+id/toolbar_layout"/>
+
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/load_button"
+            app:fabSize="normal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="20dp"
+            android:layout_marginBottom="20dp"
+            app:layout_constraintBottom_toBottomOf="@+id/movies_list"
+            app:layout_constraintRight_toRightOf="parent"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="@string/load_more"
+            app:layout_constraintBottom_toBottomOf="@+id/load_button"
+            app:layout_constraintTop_toTopOf="@+id/load_button"
+            app:layout_constraintRight_toRightOf="@+id/load_button"
+            app:layout_constraintLeft_toLeftOf="@+id/load_button"
+            android:elevation="16dp"
+            android:textColor="@android:color/white" />
 
     </android.support.constraint.ConstraintLayout>
 </layout>

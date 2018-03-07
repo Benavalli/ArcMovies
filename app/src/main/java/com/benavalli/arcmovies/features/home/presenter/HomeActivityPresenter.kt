@@ -13,10 +13,10 @@ class HomeActivityPresenter
 constructor(private val context: Context, private val repository: HomeRepository) : BasePresenter<HomeActivityContract.View>(),
         HomeActivityContract.Presenter<HomeActivityContract.View> {
 
-    var page : Int = 1
+    private var page : Int = 0
 
     override fun loadMovies() {
-        repository.getMovies(page)
+        repository.getMovies(++page)
                 .subscribe({loadMoviesSuccess(it)}, {loadMoviesError(it)})
     }
 

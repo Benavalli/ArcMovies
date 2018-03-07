@@ -28,6 +28,8 @@ class DetailsActivity : BaseActivity<DetailsActivityContract.View, DetailsActivi
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_details)
+        setSupportActionBar(binding.toolbarDetail)
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
         movieId = intent?.extras?.getInt(IntentConstants.DETAILS_INTENT_KEY)
         callLoadDetails(movieId)
     }

@@ -1,5 +1,6 @@
 package com.benavalli.arcmovies.features.home.view
 
+import android.content.Intent
 import android.databinding.DataBindingUtil
 import android.os.Bundle
 import com.benavalli.arcmovies.R
@@ -10,10 +11,9 @@ import com.benavalli.arcmovies.di.component.DaggerHomeActivityComponent
 import com.benavalli.arcmovies.di.component.HomeActivityComponent
 import com.benavalli.arcmovies.domain.UpcomingMovies
 import com.benavalli.arcmovies.features.adapter.MoviesAdapter
+import com.benavalli.arcmovies.features.constants.IntentConstants
 import com.benavalli.arcmovies.features.home.contract.HomeActivityContract
 import com.benavalli.arcmovies.features.home.presenter.HomeActivityPresenter
-import android.content.Intent
-import com.benavalli.arcmovies.features.constants.IntentConstants
 
 
 class HomeActivity : BaseActivity<HomeActivityContract.View, HomeActivityPresenter,
@@ -28,11 +28,13 @@ class HomeActivity : BaseActivity<HomeActivityContract.View, HomeActivityPresent
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_home)
+        setSupportActionBar(binding.toolbar)
         presenter.loadMovies()
     }
 
     override fun bindMovies(movies: UpcomingMovies) {
         binding.moviesList.adapter = MoviesAdapter(this, ArrayList(movies.results))
+        binding.loadButton.setOnClickListener{ presenter.loadMovies() }
         binding.moviesList.setOnItemClickListener { _, _, position, _ ->
             showDetails(movies.results[position].id)
         }
