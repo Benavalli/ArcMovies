@@ -29,7 +29,7 @@ class MoviesAdapter : ArrayAdapter<UpcomingMovie> {
                 .inflate(inflater, R.layout.list_movies, null, false)
 
         binding.listMovieTitle.text = movies[position].name
-        binding.listMovieGenresValue.text = movies[position].genre.first().toString()
+        binding.listMovieGenresValue.text = movies[position].genre.map{ it }.joinToString(", ")
         binding.listMovieReleaseValue.text = movies[position].releaseDate
         Picasso.with(context).load(BuildConstants.BASE_IMAGE_URL + movies[position].imagePath)
                 .into(binding.listMovieFolder);

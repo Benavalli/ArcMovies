@@ -10,6 +10,7 @@ import io.reactivex.schedulers.Schedulers
 interface HomeRepository {
     fun getMovies(page: Int): Observable<UpcomingMovies>
     fun getDetails(id: Int): Observable<MovieDetails>
+    fun searchMovie(query: String): Observable<UpcomingMovies>
 }
 
 class HomeRepositoryImp(private val endpoint: Endpoints) : HomeRepository {
@@ -17,6 +18,12 @@ class HomeRepositoryImp(private val endpoint: Endpoints) : HomeRepository {
     override fun getMovies(page: Int): Observable<UpcomingMovies> =
             endpoint
                     .getUpcomingMovies(page)
+                    .subscribeOn(Schedulers.io())
+                    .observeOn(AndroidSchedulers.mainThread())
+
+    override fun searchMovie(query: String): Observable<UpcomingMovies> =
+            endpoint
+                    .searchMovies(query)
                     .subscribeOn(Schedulers.io())
                     .observeOn(AndroidSchedulers.mainThread())
 

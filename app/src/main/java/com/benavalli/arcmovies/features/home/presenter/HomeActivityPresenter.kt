@@ -17,14 +17,27 @@ constructor(private val context: Context, private val repository: HomeRepository
 
     override fun loadMovies() {
         repository.getMovies(++page)
-                .subscribe({loadMoviesSuccess(it)}, {loadMoviesError(it)})
+                .subscribe({loadMoviesSuccess(it)}, {callError(it)})
+    }
+
+    override fun searchMovies(query: String) {
+        repository.searchMovie(query)
+                .subscribe({searchMoviesSuccess(it)}, {callError(it)})
+    }
+
+    private fun searchMoviesSuccess(movies : UpcomingMovies) {
+        movies.results?.let {
+            getView()?.bindSearch(movies)
+        } ?: run {
+            getView()?.emptySearch()
+        }
     }
 
     private fun loadMoviesSuccess(movies : UpcomingMovies) {
         getView()?.bindMovies(movies)
     }
 
-    private fun loadMoviesError(throwable: Throwable) {
+    private fun callError(throwable: Throwable) {
         Log.e("HomeActivityPresenter", throwable.message);
     }
 

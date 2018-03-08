@@ -14,5 +14,8 @@ interface Endpoints {
 
     @GET("movie/{movie_id}")
     fun getMovieDetails(@Path("movie_id") id: Int) : Observable<MovieDetails>
+
+    @GET("search/movie")
+    fun searchMovies(@Query("query", encoded = true) query: String) : Observable<UpcomingMovies>
 }
 
