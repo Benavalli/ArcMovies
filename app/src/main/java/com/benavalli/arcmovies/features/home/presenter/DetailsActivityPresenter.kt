@@ -1,17 +1,15 @@
 package com.benavalli.arcmovies.features.home.presenter
 
-import android.content.Context
 import android.util.Log
 import com.benavalli.arcmovies.api.repository.HomeRepository
 import com.benavalli.arcmovies.base.BasePresenter
 import com.benavalli.arcmovies.domain.MovieDetails
-import com.benavalli.arcmovies.domain.UpcomingMovies
 import com.benavalli.arcmovies.features.home.contract.DetailsActivityContract
 import javax.inject.Inject
 
 class DetailsActivityPresenter
 @Inject
-constructor(private val context: Context, private val repository: HomeRepository) : BasePresenter<DetailsActivityContract.View>(),
+constructor(private val repository: HomeRepository) : BasePresenter<DetailsActivityContract.View>(),
         DetailsActivityContract.Presenter<DetailsActivityContract.View> {
 
     override fun loadDetails(id: Int) {
