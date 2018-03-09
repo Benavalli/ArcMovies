@@ -1,9 +1,6 @@
 package com.benavalli.arcmovies.base
 
 import android.os.Bundle
-import android.support.v4.app.Fragment
-import android.support.v4.app.FragmentManager
-import android.support.v4.app.FragmentTransaction
 import android.support.v7.app.AppCompatActivity
 
 abstract class BaseActivity<V : BaseContract.View, P : BaseContract.Presenter<V>,
@@ -22,14 +19,6 @@ abstract class BaseActivity<V : BaseContract.View, P : BaseContract.Presenter<V>
   override fun onDestroy() {
     super.onDestroy()
     presenter.detachView()
-  }
-
-  fun AppCompatActivity.addFragment(fragment: Fragment, frameId: Int){
-    supportFragmentManager.inTransaction { add(frameId, fragment) }
-  }
-
-  inline fun FragmentManager.inTransaction(func: FragmentTransaction.() -> FragmentTransaction) {
-    beginTransaction().func().commit()
   }
 
 }
