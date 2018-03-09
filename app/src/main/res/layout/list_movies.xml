@@ -57,17 +57,18 @@
             android:textSize="@dimen/regular"
             android:layout_marginLeft="@dimen/margin_left_default"
             android:layout_marginBottom="4dp"
-            app:layout_constraintBottom_toTopOf="@+id/list_movie_genres_value"
+            app:layout_constraintTop_toBottomOf="@+id/list_movie_release_value"
             app:layout_constraintLeft_toRightOf="@+id/list_movie_folder"/>
 
         <TextView
             android:id="@+id/list_movie_genres_value"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
             tools:text="Drama, Fiction"
             android:layout_marginLeft="@dimen/margin_left_default"
             android:textSize="@dimen/regular"
-            app:layout_constraintBottom_toBottomOf="@+id/list_movie_folder"
+            app:layout_constraintTop_toBottomOf="@+id/list_movie_genres_title"
             app:layout_constraintLeft_toRightOf="@+id/list_movie_folder"/>
 
     </android.support.constraint.ConstraintLayout>

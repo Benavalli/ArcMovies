@@ -1,6 +1,7 @@
 package com.benavalli.arcmovies.application
 
 import android.app.Application
+import com.benavalli.arcmovies.api.repository.HomeRepository
 import com.benavalli.arcmovies.di.component.ApplicationComponent
 import com.benavalli.arcmovies.di.module.ApplicationModule
 import com.benavalli.arcmovies.di.component.DaggerApplicationComponent
@@ -21,4 +22,5 @@ internal class ArcMovieApplication : Application() {
             .applicationModule(ApplicationModule(this))
             .build()
   }
+
 }

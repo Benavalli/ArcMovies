@@ -13,6 +13,7 @@ interface HomeActivityContract {
 
     interface Presenter<V : View> : BaseContract.Presenter<V> {
         fun loadMovies()
+        fun loadGenreList()
         fun searchMovies(query: String)
     }
 

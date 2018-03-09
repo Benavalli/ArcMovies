@@ -1,5 +1,6 @@
 package com.benavalli.arcmovies.api
 
+import com.benavalli.arcmovies.domain.Genres
 import com.benavalli.arcmovies.domain.MovieDetails
 import com.benavalli.arcmovies.domain.UpcomingMovies
 import io.reactivex.Observable
@@ -17,5 +18,8 @@ interface Endpoints {
 
     @GET("search/movie")
     fun searchMovies(@Query("query", encoded = true) query: String) : Observable<UpcomingMovies>
+
+    @GET("genre/movie/list")
+    fun genreList() : Observable<Genres>
 }
 

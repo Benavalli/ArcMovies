@@ -43,6 +43,7 @@ class HomeActivity : BaseActivity<HomeActivityContract.View, HomeActivityPresent
             presenter.searchMovies(query)
         }
         else {
+            presenter.loadGenreList()
             presenter.loadMovies()
         }
     }
